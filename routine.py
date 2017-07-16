@@ -1,15 +1,38 @@
-#-*- coding: uft-8-*
+##-*-coding: utf-8-*
 #!/usr/bin/python
+'''
+Author : Leon
+EMAIL: yangli0534@yahoo.com
+Description: run a task on schedule
 
+'''
 import socket
 import datetime
 import os
 import platform
 
-def run_task():
+def run_Task():
+    global sched_Timer
     print "It is my schedue"
-def timerFun(sched_Timer):
+    print "run the timer task at {0}".format(sched_Timer)
+def timerFun():
     flag = 0
+    global sched_Timer
     while True:
+        now = datetime.datetime.now()
+        if now == sched_Timer:
+            run_Task()
+            flag = 1
+        else:
+            if flag == 1:
+                sched_Timer = sched_Timer + datetime.timedelta(minutes = 1)
+                flag = 0
 
+if __name__ =='__main__':
+    #sched_Timer = datetime.datetime(2017,7,17,0,52,10)
+    now = datetime.datetime.now()
+    #sched_Timer = datetime.datetime(now.year, now.month, now.day, now.hour, now.min+1, now.second)
+    sched_Timer = now + datetime.timedelta(minutes = 1)
+    print "run the timer task at {0}".format(sched_Timer)
+    timerFun()
     
