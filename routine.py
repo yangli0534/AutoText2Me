@@ -33,7 +33,7 @@ if __name__ =='__main__':
     now = datetime.datetime.now()
     #sched_Timer = datetime.datetime(now.year, now.month, now.day, now.hour, now.min+1, now.second)
 
-    print "run the timer task at {0}".format(sched_Timer)
+    print "run the timer task at {0}".format(now)
     sched_Timer = now + datetime.timedelta(minutes = 1)
     timerFun()
     
