@@ -8,7 +8,7 @@ __author__ = 'Leon'
     Email  : yangli0534@yahoo.com
     Description: 1 grab a joke from the Internet 
                  2 email to someone on schedule 
-                 3 ²Î¿¼ÁË²¿·ÖÍøÓÑµÄ´úÂë £¬¸ĞĞ»¡£ÇÖÈ¨É¾
+                 3 å‚è€ƒäº†éƒ¨åˆ†ç½‘å‹çš„ä»£ç  ï¼Œæ„Ÿè°¢ã€‚ä¾µæƒåˆ 
 '''
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
@@ -21,16 +21,16 @@ import datetime
 
 class randomJoke:
 
-    #³õÊ¼»¯·½·¨
+    #åˆå§‹åŒ–æ–¹æ³•
     def __init__(self):
         self.url = 'http://lengxiaohua.com/random'
         self.user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-        #³õÊ¼»¯headers
+        #åˆå§‹åŒ–headers
         self.headers = { 'User-Agent' : self.user_agent }
-        #Ğ¦»°ÄÚÈİ
+        #ç¬‘è¯å†…å®¹
         self.content = []
 
-    #»ñÈ¡ÍøÒ³Ô´´úÂë
+    #è·å–ç½‘é¡µæºä»£ç 
     def getSourceCode(self):
         try:
             request = urllib2.Request(url = self.url, headers=self.headers)
@@ -39,38 +39,38 @@ class randomJoke:
             return sourceCode
         except urllib2.URLError, e:
             if hasattr(e,"reason"):
-                print u"ÍøÂç´íÎó...",e.reason
+                print u"ç½‘ç»œé”™è¯¯...",e.reason
                 return None
 
-    #»ñÈ¡Ğ¦»°
+    #è·å–ç¬‘è¯
     def setContent(self):
         sourceCode = self.getSourceCode()
         if not sourceCode:
-            print('»ñÈ¡ÍøÒ³ÄÚÈİÊ§°Ü~£¡')
+            print('è·å–ç½‘é¡µå†…å®¹å¤±è´¥~ï¼')
             quit()
         pattern = re.compile(' <pre.*?js="joke_summary".*?"first_char">(.*?)</span>(.*?)</pre>.*?class="user_info">.*?<a.*?>(.*?)</a>.*?(.*?)',re.S)
         items = re.findall(pattern,sourceCode)
         self.content = items
-        #print u"ÒÑ¾­ÅÀÈ¡Ô´´úÂë...ÕıÔÚ½âÎöÔ´´úÂë..."
+        #print u"å·²ç»çˆ¬å–æºä»£ç ...æ­£åœ¨è§£ææºä»£ç ..."
 
-    #·µ»ØĞ¦»°
+    #è¿”å›ç¬‘è¯
     def getContent(self):
         return self.content
 
-    #´òÓ¡Ò»ÔòĞ¦»°
+    #æ‰“å°ä¸€åˆ™ç¬‘è¯
     def printAJoke(self,number):
         joke = self.content[number]
-        print u"×÷Õß:%s" %(joke[2])
-        print u'·¢±íÓÚ:'+ joke[3]
-        #item[0]ºÍitem[1]×é³ÉÍêÕûµÄÄÚÈİ
+        print u"ä½œè€…:%s" %(joke[2])
+        print u'å‘è¡¨äº:'+ joke[3]
+        #item[0]å’Œitem[1]ç»„æˆå®Œæ•´çš„å†…å®¹
         print joke[0]+joke[1]
 
     def getAJoke(self,number):
         joke = self.content[number]
         content = ""
-        #content = content+ u"×÷Õß:" %(joke[2])
-        #print u'·¢±íÓÚ:'+ joke[3]
-        #item[0]ºÍitem[1]×é³ÉÍêÕûµÄÄÚÈİ
+        #content = content+ u"ä½œè€…:" %(joke[2])
+        #print u'å‘è¡¨äº:'+ joke[3]
+        #item[0]å’Œitem[1]ç»„æˆå®Œæ•´çš„å†…å®¹
         content =  joke[0]+joke[1]
         return content
 
@@ -82,7 +82,7 @@ def job():
     global password
     t = datetime.datetime.now()
     content = ""
-    content = content+ u"ÄãºÃ£¬ÕâÀïÊÇËæ»úĞ¦»°£¡"
+    content = content+ u"ä½ å¥½ï¼Œè¿™é‡Œæ˜¯éšæœºç¬‘è¯ï¼"
     content = content+ "It's "
     content = content+ t.strftime("%A, %d. %B %Y %I:%M%p")+'\n'
     myRandomJoke.setContent()
@@ -111,10 +111,10 @@ def job():
     except:
         print "failed!"
 
-toaddr = "1184802734@qq.com" # email address to send
-toaddr2 = "18811007706@139.com"
-fromaddr = "china__mobile@139.com"
-password = "oppaha89888"
+toaddr = "xxxxxxx" # email address to send
+toaddr2 = "xxxxxx"
+fromaddr = "xxxxxxxx"
+password = "xxxxxxxxx"
 #server = smtplib.SMTP('smtp.yahoo.com', 587, None, 30)
 #server = smtplib.SMTP_SSL('smtp.googlemail.com', 465)
 #server = smtplib.SMTP_SSL("smtp.qq.com", 465)# connect to email server
@@ -125,7 +125,7 @@ myRandomJoke = randomJoke()
 job()
 schedule.every(10).minutes.do(job)
 #notQuit = True
-#print u"ÄãºÃ£¬ÕâÀïÊÇËæ»úĞ¦»°£¡"
+#print u"ä½ å¥½ï¼Œè¿™é‡Œæ˜¯éšæœºç¬‘è¯ï¼"
 while True:
     schedule.run_pending()
     time.sleep(10)
