@@ -118,8 +118,8 @@ def job():
     except:
         print "failed!"
 
-toaddr = ['1184802734@qq.com','18811007706@139.com'] # email address to send
-ccaddr = ['502327976@qq.comm']
+toaddr = ['1184802734@qq.com','18811007706@139.com','15210579762@139.com'] # email address to send
+ccaddr = ['502327976@qq.com']
 #toaddr2 = '502327976@qq.com'
 fromaddr = 'china__mobile@139.com'
 password = "oppaha89888"
